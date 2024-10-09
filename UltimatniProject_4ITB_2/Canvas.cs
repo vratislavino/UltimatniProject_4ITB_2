@@ -41,7 +41,6 @@ namespace UltimatniProject_4ITB_2
         {
             if (shapes.Count == 0) return;
 
-            // proč se to v rychlosti nepouští? :)
             if(currentShape != null && isDragging)
             {
                 currentShape.Move(e.X, e.Y);

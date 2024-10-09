@@ -30,6 +30,8 @@
         {
             canvas1 = new Canvas();
             splitContainer1 = new SplitContainer();
+            button2 = new Button();
+            checkBox1 = new CheckBox();
             button1 = new Button();
             comboBox1 = new ComboBox();
             menuStrip1 = new MenuStrip();
@@ -37,8 +39,6 @@
             saveToolStripMenuItem = new ToolStripMenuItem();
             loadToolStripMenuItem = new ToolStripMenuItem();
             addMoreShapesToolStripMenuItem = new ToolStripMenuItem();
-            checkBox1 = new CheckBox();
-            button2 = new Button();
             colorDialog1 = new ColorDialog();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -79,10 +79,31 @@
             splitContainer1.SplitterDistance = 90;
             splitContainer1.TabIndex = 1;
             // 
+            // button2
+            // 
+            button2.BackColor = Color.Red;
+            button2.Location = new Point(908, 44);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 5;
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            checkBox1.Location = new Point(782, 34);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(110, 45);
+            checkBox1.TabIndex = 4;
+            checkBox1.Text = "Filled";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // button1
             // 
             button1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button1.Location = new Point(260, 34);
+            button1.Location = new Point(614, 31);
             button1.Name = "button1";
             button1.Size = new Size(146, 48);
             button1.TabIndex = 1;
@@ -92,11 +113,12 @@
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 238);
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(12, 34);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(242, 45);
+            comboBox1.Size = new Size(596, 45);
             comboBox1.TabIndex = 0;
             // 
             // menuStrip1
@@ -119,44 +141,23 @@
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(224, 26);
+            saveToolStripMenuItem.Size = new Size(217, 26);
             saveToolStripMenuItem.Text = "Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
             // loadToolStripMenuItem
             // 
             loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            loadToolStripMenuItem.Size = new Size(224, 26);
+            loadToolStripMenuItem.Size = new Size(217, 26);
             loadToolStripMenuItem.Text = "Load";
             loadToolStripMenuItem.Click += loadToolStripMenuItem_Click;
             // 
             // addMoreShapesToolStripMenuItem
             // 
             addMoreShapesToolStripMenuItem.Name = "addMoreShapesToolStripMenuItem";
-            addMoreShapesToolStripMenuItem.Size = new Size(224, 26);
+            addMoreShapesToolStripMenuItem.Size = new Size(217, 26);
             addMoreShapesToolStripMenuItem.Text = "Add more shapes...";
             addMoreShapesToolStripMenuItem.Click += addMoreShapesToolStripMenuItem_Click;
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBox1.Location = new Point(428, 37);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(110, 45);
-            checkBox1.TabIndex = 4;
-            checkBox1.Text = "Filled";
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.Red;
-            button2.Location = new Point(554, 47);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 5;
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
             // 
             // Form1
             // 
@@ -167,6 +168,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
