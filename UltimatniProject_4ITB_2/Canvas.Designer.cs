@@ -39,7 +39,9 @@
             Name = "Canvas";
             Size = new Size(1699, 972);
             Paint += Canvas_Paint;
+            MouseDown += Canvas_MouseDown;
             MouseMove += Canvas_MouseMove;
+            MouseUp += Canvas_MouseUp;
             ResumeLayout(false);
         }
 

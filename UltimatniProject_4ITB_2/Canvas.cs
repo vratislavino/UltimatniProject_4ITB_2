@@ -13,6 +13,8 @@ namespace UltimatniProject_4ITB_2
     public partial class Canvas : UserControl
     {
         List<Shape> shapes = new List<Shape>();
+        Shape currentShape = null;
+        bool isDragging = false;
 
         public Canvas()
         {
@@ -37,15 +39,53 @@ namespace UltimatniProject_4ITB_2
 
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            foreach(var shape in shapes)
+            if (shapes.Count == 0) return;
+
+            // proč se to v rychlosti nepouští? :)
+            if(currentShape != null && isDragging)
             {
-                if(shape.IsMouseOver(e.X, e.Y)) // ještě odoznačit
+                currentShape.Move(e.X, e.Y);
+                Invalidate();
+                return;
+            }
+
+            var shape = shapes.FirstOrDefault(s => s.IsMouseOver(e.X, e.Y));
+            if (shape != null)
+            {
+                if (currentShape != null)
+                    currentShape.Highlight(false);
+
+                currentShape = shape;
+                currentShape.Highlight(true);
+            }
+            else
+            {
+                if (currentShape != null)
                 {
-                    shape.Highlight();
-                    Invalidate();
-                    break;
+                    currentShape.Highlight(false);
+                    currentShape = null;
                 }
             }
+            Invalidate();
+        }
+
+        private void Canvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(currentShape != null)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    currentShape.dragOffsetX = e.X - currentShape.X;
+                    currentShape.dragOffsetY = e.Y - currentShape.Y;
+                    isDragging = true;
+                }
+            }
+        }
+
+        private void Canvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+                isDragging = false;
         }
     }
 }
