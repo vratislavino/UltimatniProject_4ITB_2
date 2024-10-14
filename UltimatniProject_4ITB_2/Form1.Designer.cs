@@ -30,6 +30,7 @@
         {
             canvas1 = new Canvas();
             splitContainer1 = new SplitContainer();
+            button3 = new Button();
             button2 = new Button();
             checkBox1 = new CheckBox();
             button1 = new Button();
@@ -66,6 +67,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(button3);
             splitContainer1.Panel1.Controls.Add(button2);
             splitContainer1.Panel1.Controls.Add(checkBox1);
             splitContainer1.Panel1.Controls.Add(button1);
@@ -78,6 +80,18 @@
             splitContainer1.Size = new Size(1388, 882);
             splitContainer1.SplitterDistance = 90;
             splitContainer1.TabIndex = 1;
+            // 
+            // button3
+            // 
+            button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button3.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            button3.Location = new Point(1207, 31);
+            button3.Name = "button3";
+            button3.Size = new Size(169, 56);
+            button3.TabIndex = 6;
+            button3.Text = "Clear";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -193,5 +207,6 @@
         private CheckBox checkBox1;
         private Button button2;
         private ColorDialog colorDialog1;
+        private Button button3;
     }
 }

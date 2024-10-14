@@ -12,6 +12,10 @@ namespace UltimatniProject_4ITB_2
         {
         }
 
+        public Circle(ShapeDTO data) : base(data)
+        {
+        }
+
         public override void DoYourThing()
         {
             height += 10;

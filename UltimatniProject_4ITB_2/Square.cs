@@ -12,6 +12,10 @@ namespace UltimatniProject_4ITB_2
         {
         }
 
+        public Square(ShapeDTO data) : base(data)
+        {
+        }
+
         public override void Draw(Graphics g)
         {
             if(filled)

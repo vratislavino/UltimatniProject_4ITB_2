@@ -4,6 +4,8 @@ namespace UltimatniProject_4ITB_2
 {
     public partial class Form1 : Form
     {
+        SaveLoadManager saveLoadManager = new SaveLoadManager();
+
         public Form1()
         {
             InitializeComponent();
@@ -42,12 +44,27 @@ namespace UltimatniProject_4ITB_2
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Shapes JSON object (*.json)|*.json";
+            if(sfd.ShowDialog() == DialogResult.OK)
+            {
+                var path = sfd.FileName;
+                saveLoadManager.SaveShapes(canvas1.Shapes, path);
+            }
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Shapes JSON object (*.json)|*.json";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                var path = ofd.FileName;
+                var newShapes = saveLoadManager.LoadShapes(path);
+                canvas1.ClearShapes();
 
+                newShapes.ForEach(s => canvas1.AddShape(s));
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -58,5 +75,9 @@ namespace UltimatniProject_4ITB_2
             }
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            canvas1.ClearShapes();
+        }
     }
 }

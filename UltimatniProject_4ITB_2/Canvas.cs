@@ -13,6 +13,8 @@ namespace UltimatniProject_4ITB_2
     public partial class Canvas : UserControl
     {
         List<Shape> shapes = new List<Shape>();
+        public IReadOnlyList<Shape> Shapes => shapes;
+
         Shape currentShape = null;
         bool isDragging = false;
 
@@ -85,6 +87,13 @@ namespace UltimatniProject_4ITB_2
         {
             if(e.Button == MouseButtons.Left)
                 isDragging = false;
+        }
+
+        public void ClearShapes()
+        {
+            shapes.Clear();
+            currentShape = null;
+            Invalidate();
         }
     }
 }

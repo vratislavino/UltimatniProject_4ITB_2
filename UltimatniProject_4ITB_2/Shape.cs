@@ -27,17 +27,35 @@ namespace UltimatniProject_4ITB_2
         protected bool highlighted = false;
         public int dragOffsetX = 0;
         public int dragOffsetY = 0;
+
         public Shape(Color color, int x, int y, bool filled)
         {
             this.color = color;
-            pen = new Pen(color, 8f);
-            brush = new SolidBrush(color);
             this.filled = filled;
             width = 100;
             height = 100;
             this.x = x-width/2;
             this.y = y-height/2;
 
+            InitRuntimeValues();
+        }
+
+        public Shape(ShapeDTO data)
+        {
+            color = Color.FromArgb(data.r, data.g, data.b);
+            filled = data.filled;
+            width = data.width;
+            height = data.height;
+            x = data.x;
+            y = data.y;
+
+            InitRuntimeValues();
+        }
+
+        private void InitRuntimeValues()
+        {
+            brush = new SolidBrush(color);
+            pen = new Pen(color, 8f);
             outlinePen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             outlinePen.DashPattern = new float[] { 5, 5 };
         }
@@ -69,6 +87,40 @@ namespace UltimatniProject_4ITB_2
         {
             this.x = mx - dragOffsetX;
             this.y = my - dragOffsetY;
+        }
+
+        public ShapeDTO GetDTO()
+        {
+            return new ShapeDTO(this);
+        }
+
+        public class ShapeDTO
+        {
+            public int x;
+            public int y;
+            public int width;
+            public int height;
+            public bool filled;
+            public int r;
+            public int g;
+            public int b;
+
+            public Type shapeType;
+
+            public ShapeDTO() { }
+
+            public ShapeDTO(Shape shape)
+            {
+                x = shape.x;
+                y = shape.y;
+                width = shape.width;
+                height = shape.height;
+                filled = shape.filled;
+                r = shape.color.R;
+                g = shape.color.G;
+                b = shape.color.B;
+                shapeType = shape.GetType();
+            }
         }
     }
 }
