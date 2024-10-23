@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace UltimatniProject_4ITB_2
 {
@@ -15,11 +17,24 @@ namespace UltimatniProject_4ITB_2
             string toLoad = File.ReadAllText(path);
             var dtos = JsonConvert.DeserializeObject<List<Shape.ShapeDTO>>(toLoad);
 
-            var shapes = dtos.Select(dto => 
+            var shapes = dtos.Select(dto =>
                 Activator.CreateInstance(dto.shapeType, dto) as Shape
             );
-            
+
             return shapes.ToList();
+        }
+
+        public Assembly LoadAssemblyFromFile(string path)
+        {
+            try
+            {
+                return Assembly.LoadFrom(path);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
         }
     }
 }

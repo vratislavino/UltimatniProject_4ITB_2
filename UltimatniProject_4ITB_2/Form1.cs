@@ -14,12 +14,18 @@ namespace UltimatniProject_4ITB_2
         private void Form1_Load(object sender, EventArgs e)
         {
             var ass = Assembly.GetExecutingAssembly();
+            AddTypesFromAssemblyToComboBox(ass);
+
+            if (comboBox1.Items.Count > 0)
+                comboBox1.SelectedIndex = 0;
+        }
+
+        private void AddTypesFromAssemblyToComboBox(Assembly ass)
+        {
             var types = ass.GetTypes();
             var filtered = types.Where(t => t.IsSubclassOf(typeof(Shape))).ToList();
 
             comboBox1.Items.AddRange(filtered.ToArray());
-            if (filtered.Count > 0)
-                comboBox1.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e) // add shape
@@ -39,7 +45,19 @@ namespace UltimatniProject_4ITB_2
 
         private void addMoreShapesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Shape types DLL (*.dll)|*.dll";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                var path = ofd.FileName;
+                Assembly ass = saveLoadManager.LoadAssemblyFromFile(path);
+                if(ass != null) { 
+                    AddTypesFromAssemblyToComboBox(ass);
+                } else
+                {
+                    MessageBox.Show("Nepodaøilo se naèíst DLL " + path);
+                }
+            }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
