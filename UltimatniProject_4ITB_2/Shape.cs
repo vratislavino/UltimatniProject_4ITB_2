@@ -94,6 +94,11 @@ namespace UltimatniProject_4ITB_2
             return new ShapeDTO(this);
         }
 
+        public override string ToString()
+        {
+            return $"{GetType().Name} [{x},{y}] {color}";
+        }
+
         public class ShapeDTO
         {
             public int x;

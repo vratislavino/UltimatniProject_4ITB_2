@@ -12,6 +12,8 @@ namespace UltimatniProject_4ITB_2
 {
     public partial class Canvas : UserControl
     {
+        public event Action ShapesChanged;
+
         List<Shape> shapes = new List<Shape>();
         public IReadOnlyList<Shape> Shapes => shapes;
 
@@ -28,6 +30,7 @@ namespace UltimatniProject_4ITB_2
         {
             shapes.Add(shape);
             Invalidate();
+            ShapesChanged?.Invoke();
         }
 
         private void Canvas_Paint(object sender, PaintEventArgs e)
@@ -43,7 +46,7 @@ namespace UltimatniProject_4ITB_2
         {
             if (shapes.Count == 0) return;
 
-            if(currentShape != null && isDragging)
+            if (currentShape != null && isDragging)
             {
                 currentShape.Move(e.X, e.Y);
                 Invalidate();
@@ -72,20 +75,23 @@ namespace UltimatniProject_4ITB_2
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            if(currentShape != null)
+            if (currentShape != null)
             {
                 if (e.Button == MouseButtons.Left)
                 {
                     currentShape.dragOffsetX = e.X - currentShape.X;
                     currentShape.dragOffsetY = e.Y - currentShape.Y;
                     isDragging = true;
+                } else if (e.Button == MouseButtons.Right)
+                {
+                    contextMenuStrip1.Show(this, e.X, e.Y);
                 }
             }
         }
 
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
                 isDragging = false;
         }
 
@@ -94,6 +100,15 @@ namespace UltimatniProject_4ITB_2
             shapes.Clear();
             currentShape = null;
             Invalidate();
+            ShapesChanged?.Invoke();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            shapes.Remove(currentShape);
+            currentShape = null;
+            Invalidate();
+            ShapesChanged?.Invoke();
         }
     }
 }

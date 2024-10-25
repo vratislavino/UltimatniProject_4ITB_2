@@ -9,6 +9,16 @@ namespace UltimatniProject_4ITB_2
         public Form1()
         {
             InitializeComponent();
+            canvas1.ShapesChanged += UpdateShapesList;
+        }
+
+        private void UpdateShapesList()
+        {
+            listBox1.Items.Clear();
+            foreach (var shape in canvas1.Shapes)
+            {
+                listBox1.Items.Add(shape);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)

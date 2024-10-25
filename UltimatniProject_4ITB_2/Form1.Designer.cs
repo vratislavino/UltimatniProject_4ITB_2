@@ -41,11 +41,17 @@
             loadToolStripMenuItem = new ToolStripMenuItem();
             addMoreShapesToolStripMenuItem = new ToolStripMenuItem();
             colorDialog1 = new ColorDialog();
+            splitContainer2 = new SplitContainer();
+            listBox1 = new ListBox();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
             SuspendLayout();
             // 
             // canvas1
@@ -55,7 +61,7 @@
             canvas1.Dock = DockStyle.Fill;
             canvas1.Location = new Point(0, 0);
             canvas1.Name = "canvas1";
-            canvas1.Size = new Size(1388, 788);
+            canvas1.Size = new Size(1115, 788);
             canvas1.TabIndex = 0;
             // 
             // splitContainer1
@@ -76,7 +82,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(canvas1);
+            splitContainer1.Panel2.Controls.Add(splitContainer2);
             splitContainer1.Size = new Size(1388, 882);
             splitContainer1.SplitterDistance = 90;
             splitContainer1.TabIndex = 1;
@@ -173,6 +179,32 @@
             addMoreShapesToolStripMenuItem.Text = "Add more shapes...";
             addMoreShapesToolStripMenuItem.Click += addMoreShapesToolStripMenuItem_Click;
             // 
+            // splitContainer2
+            // 
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Location = new Point(0, 0);
+            splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            splitContainer2.Panel1.Controls.Add(canvas1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            splitContainer2.Panel2.Controls.Add(listBox1);
+            splitContainer2.Size = new Size(1388, 788);
+            splitContainer2.SplitterDistance = 1115;
+            splitContainer2.TabIndex = 1;
+            // 
+            // listBox1
+            // 
+            listBox1.Dock = DockStyle.Fill;
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(0, 0);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(269, 788);
+            listBox1.TabIndex = 0;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -190,6 +222,10 @@
             splitContainer1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -208,5 +244,7 @@
         private Button button2;
         private ColorDialog colorDialog1;
         private Button button3;
+        private SplitContainer splitContainer2;
+        private ListBox listBox1;
     }
 }
